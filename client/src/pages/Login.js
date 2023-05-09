@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
 function App() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,10 +32,10 @@ function App() {
       localStorage.setItem("token", data.user);
       localStorage.setItem("email", email);
       alert("Login successful");
-      window.location.href = "/home";
+      navigate("/home");
     } else {
       alert(data.error);
-      window.location.href = "/";
+      navigate("/");
     }
   }
 

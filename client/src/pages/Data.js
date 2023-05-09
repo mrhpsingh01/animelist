@@ -3,8 +3,10 @@ import Pagination from "../utilities/Pagination";
 import axios from "axios";
 import viewArray from "../utilities/ViewsArray";
 import Nav from "../components/Nav";
+import { useNavigate } from "react-router-dom";
 
 function Data() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [animeList, setAnimeList] = useState([]);
   const [currentView, setCurrentView] = useState("list"); // added state variable
@@ -34,7 +36,7 @@ function Data() {
   const logOut = () => {
     localStorage.removeItem("token");
     alert("Logout successful");
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (

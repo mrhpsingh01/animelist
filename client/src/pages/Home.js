@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import Button from "react-bootstrap/Button";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -20,17 +21,17 @@ const Home = () => {
       if (data.message === "valid") {
         setLoggedIn(data.message === "valid");
       } else {
-        window.location.href = "/";
+        navigate("/");
       }
     }
 
     validateToken();
-  }, []);
+  });
 
   const logOut = () => {
     localStorage.removeItem("token");
     alert("Logout successful");
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (
