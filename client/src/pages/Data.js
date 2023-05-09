@@ -14,7 +14,7 @@ function Data() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/anime_data")
+      .get("https://anime-list-7xnx.onrender.com/api/anime_data")
       .then((response) => {
         setAnimeList(response.data.result);
       })

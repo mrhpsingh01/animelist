@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     async function validateToken() {
-      const req = await fetch("http://localhost:1337/api/home", {
+      const req = await fetch("https://anime-list-7xnx.onrender.com/api/home", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

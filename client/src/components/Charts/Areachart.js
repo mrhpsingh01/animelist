@@ -37,6 +37,7 @@ function Chart(props) {
       barFavorites.push(item.Favorites);
       barMembers.push(item.Members);
       barScored_Users.push(item.Scored_Users);
+      return console.log("no error");
     });
   barData();
   const data = {
