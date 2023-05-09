@@ -1,0 +1,38 @@
+import React from "react";
+
+function Table(props) {
+  return (
+    <div>
+      <h3 style={{ paddingTop: "10px" }}>Table</h3>
+      <hr />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>Genres</th>
+            <th>Episodes</th>
+            <th>Theme</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.currentItems.map((animeData) => (
+            <tr key={animeData.ID}>
+              <td>{animeData.Popularity}</td>
+              <td>{animeData.English}</td>
+              <td>{animeData.Score}</td>
+              <td>{animeData.Genres}</td>
+              <td>{animeData.Episodes}</td>
+              <td>{animeData.Themes}</td>
+              <td>{animeData.Rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default Table;
