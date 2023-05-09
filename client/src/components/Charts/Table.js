@@ -1,11 +1,12 @@
 import React from "react";
+import Table from "react-bootstrap/Table";
 
-function Table(props) {
+function TableData(props) {
   return (
-    <div>
+    <div style={{ marginRight: "180px" }}>
       <h3 style={{ paddingTop: "10px" }}>Table</h3>
       <hr />
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>ID</th>
@@ -14,7 +15,6 @@ function Table(props) {
             <th>Genres</th>
             <th>Episodes</th>
             <th>Theme</th>
-            <th>Rating</th>
           </tr>
         </thead>
         <tbody>
@@ -26,13 +26,12 @@ function Table(props) {
               <td>{animeData.Genres}</td>
               <td>{animeData.Episodes}</td>
               <td>{animeData.Themes}</td>
-              <td>{animeData.Rating}</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
 
-export default Table;
+export default TableData;

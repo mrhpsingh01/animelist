@@ -4,15 +4,13 @@ import axios from "axios";
 import viewArray from "../utilities/ViewsArray";
 import Nav from "../components/Nav";
 import { useNavigate } from "react-router-dom";
+import ViewsButtons from "../utilities/ViewsButtons";
 
 function Data() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [animeList, setAnimeList] = useState([]);
   const [currentView, setCurrentView] = useState("list"); // added state variable
-
-  const itemsPerPage = 15;
-  const totalPages = Math.ceil(animeList.length / itemsPerPage);
 
   useEffect(() => {
     axios
@@ -25,6 +23,8 @@ function Data() {
       });
   }, []);
 
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(animeList.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = animeList.slice(startIndex, endIndex);
@@ -58,18 +58,11 @@ function Data() {
           />
         </div>
 
-        {/* Button to switch between list and table view */}
-        <div className="view-switch">
-          {viewArray.map(({ name, component }) => (
-            <button
-              key={name}
-              onClick={() => setCurrentView(name)}
-              disabled={currentView === name}
-            >
-              {name.charAt(0).toUpperCase() + name.slice(1)} View
-            </button>
-          ))}
-        </div>
+        <ViewsButtons
+          viewArray={viewArray}
+          setCurrentView={setCurrentView}
+          currentView={currentView}
+        />
       </div>
     </div>
   );
