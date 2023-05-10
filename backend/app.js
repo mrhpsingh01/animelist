@@ -22,8 +22,12 @@ app.post("/api/register", async (req, res) => {
       return res.json({ status: "error", error: "User already exists" });
     }
     const newUser = new User({
-      username: req.body.name,
+      name: req.body.name,
       email: req.body.email,
+      gender: req.body.gender,
+      age: req.body.age,
+      phone: req.body.phone,
+      country: req.body.country,
       password: req.body.password,
     });
     await newUser.save();

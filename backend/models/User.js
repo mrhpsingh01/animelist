@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
       required: true,
     },
@@ -11,13 +11,24 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    gender: {
+      type: String,
+    },
+    age: {
+      type: Number,
+    },
+    phone: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
     password: {
       type: String,
       required: true,
     },
   },
-  { collection: "users-mern" }
-  
+  { collection: "users-anime" }
 );
 
 const User = mongoose.model("User", UserSchema);
