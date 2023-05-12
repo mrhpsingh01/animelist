@@ -11,16 +11,19 @@ function LoginForm() {
   async function loginUser(event) {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:1337/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const response = await fetch(
+      "https://anime-list-7xnx.onrender.com/api/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
 
     const data = await response.json();
 

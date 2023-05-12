@@ -32,21 +32,24 @@ function RegisterForm() {
   async function registerUser(event) {
     event.preventDefault();
     console.log(name, email, password, gender, age, phone, country);
-    const response = await fetch("http://localhost:1337/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        gender,
-        age,
-        phone,
-        country,
-        password,
-      }),
-    });
+    const response = await fetch(
+      "https://anime-list-7xnx.onrender.com/api/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          gender,
+          age,
+          phone,
+          country,
+          password,
+        }),
+      }
+    );
 
     const data = await response.json();
 

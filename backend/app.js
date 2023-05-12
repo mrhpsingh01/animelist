@@ -19,7 +19,7 @@ app.use(morgan("tiny")); // Log HTTP requests
 app.use(bodyparser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
 // Define the port on which the server will listen
-const port = 1337;
+const port = process.env.API_PORT;
 
 // Connect to the database
 connectDB();
