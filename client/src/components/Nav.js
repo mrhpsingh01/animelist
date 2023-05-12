@@ -3,11 +3,18 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 function Nav(props) {
+  const navigate = useNavigate();
+
+  const navHref = () => {
+    navigate("/home");
+  };
+
   return (
     <Navbar bg={props.navColor}>
-      <Navbar.Brand href="/home">
+      <Navbar.Brand onClick={navHref}>
         <img
           alt=""
           src={logo}
