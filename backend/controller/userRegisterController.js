@@ -13,7 +13,6 @@ exports.registerUser = async (req, res) => {
     const genderRegex = /^(male|female|other)$/i;
     const ageRegex = /^[1-9][0-9]?$/;
     const phoneRegex = /^\+\d{1,3}\d{9}$/;
-    const countryRegex = /^[a-zA-Z\s]*$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
     // Check name format
@@ -39,11 +38,6 @@ exports.registerUser = async (req, res) => {
     // Check phone format
     if (!phoneRegex.test(phone)) {
       return res.json({ status: "error", error: "Invalid phone number" });
-    }
-
-    // Check country format
-    if (!countryRegex.test(country)) {
-      return res.json({ status: "error", error: "Invalid country format" });
     }
 
     // Check password format
