@@ -23,10 +23,11 @@ ChartJS.register(
 );
 
 function Chart(props) {
-  const data = getBarData(props.currentItems);
+  const numofColors = 3;
+  const data = getBarData(props.currentItems, numofColors);
 
   return (
-    <div style={({ padding: "20px" }, { width: "70%" })}>
+    <div style={{ width: "70%" }}>
       <h3 style={{ paddingTop: "10px" }}>Area Chart</h3>
       <hr />
       <Line data={data}></Line>

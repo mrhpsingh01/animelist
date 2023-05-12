@@ -12,7 +12,8 @@ import { getBarData } from "../../utilities/getBarData";
 ChartJS.register(ArcElement, RadialLinearScale, Tooltip, Legend);
 
 function Chart(props) {
-  const data = getBarData(props.currentItems);
+  const numofColors = 15;
+  const data = getBarData(props.currentItems, numofColors);
 
   return (
     <div style={{ width: "100%" }}>

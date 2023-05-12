@@ -1,12 +1,12 @@
 import randomColor from "randomcolor";
 
-export const getBarData = (currentItems) => {
+export const getBarData = (currentItems, numofColors) => {
   const barName = [];
   const barFavorites = [];
   const barMembers = [];
   const barScored_Users = [];
-  const barColors = Array.from({ length: 3 }, () =>
-    randomColor({ format: "rgba", alpha: 0.2 })
+  const barColors = Array.from({ length: numofColors }, () =>
+    randomColor({ format: "rgba", alpha: 1 })
   );
 
   currentItems.forEach((item) => {
@@ -22,7 +22,7 @@ export const getBarData = (currentItems) => {
       {
         label: "Favourites",
         data: barFavorites,
-        backgroundColor: barColors[0],
+        backgroundColor: numofColors > 5 ? barColors : barColors[0],
         borderColor: "black",
         borderWidth: 1,
         fill: true,
@@ -30,7 +30,7 @@ export const getBarData = (currentItems) => {
       {
         label: "Scored_Users",
         data: barScored_Users,
-        backgroundColor: barColors[1],
+        backgroundColor: numofColors > 5 ? barColors : barColors[1],
         borderColor: "black",
         borderWidth: 1,
         fill: true,
@@ -38,7 +38,7 @@ export const getBarData = (currentItems) => {
       {
         label: "Members",
         data: barMembers,
-        backgroundColor: barColors[2],
+        backgroundColor: numofColors > 5 ? barColors : barColors[2],
         borderColor: "black",
         borderWidth: 1,
         fill: true,

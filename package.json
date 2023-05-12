@@ -6,6 +6,7 @@
   "scripts": {
     "install-server": "cd backend && npm install",
     "start-server": "cd backend && node app.js",
+    "start-dev-server": "cd backend && nodemon app.js",
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "start-client": "cd client && npm run start"

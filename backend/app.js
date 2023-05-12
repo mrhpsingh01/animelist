@@ -1,87 +1,31 @@
-const express = require("express");
-const connectDB = require("./controllers/connect");
-const mongoose = require("mongoose");
-const User = require("./models/User");
-const AnimeData = require("./models/AnimeData");
-const app = express();
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
+// Import required modules
+const express = require("express"); // Express framework for building web applications
+const connectDB = require("./database/connect"); // Custom module to connect to the database
+const cors = require("cors"); // Middleware for enabling Cross-Origin Resource Sharing
+const dotenv = require("dotenv"); // Module to load environment variables
+const morgan = require("morgan"); // HTTP request logger middleware
+const bodyparser = require("body-parser"); // Middleware to parse request bodies
 
+// Load environment variables from .env file
 dotenv.config();
 
-app.use(express.json());
-app.use(cors());
-const port = process.env.API_PORT;
+// Create an instance of the Express application
+const app = express();
+
+// Set up middleware
+app.use(express.json()); // Parse JSON request bodies
+app.use(cors()); // Enable CORS
+app.use(morgan("tiny")); // Log HTTP requests
+app.use(bodyparser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+
+// Define the port on which the server will listen
+const port = 1337;
+
+// Connect to the database
 connectDB();
 
-app.post("/api/register", async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      return res.json({ status: "error", error: "User already exists" });
-    }
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      gender: req.body.gender,
-      age: req.body.age,
-      phone: req.body.phone,
-      country: req.body.country,
-      password: req.body.password,
-    });
-    await newUser.save();
+// Set up routes
+app.use("/", require("./routes/router")); // Use the router module for handling routes
 
-    res.json({ status: "ok" });
-  } catch (err) {
-    console.log(err);
-    res.json({ status: "error", error: "Server error" });
-  }
-  console.log(req.body);
-});
-
-app.post("/api/login", async (req, res) => {
-  try {
-    const user = await User.findOne({
-      email: req.body.email,
-      password: req.body.password,
-    });
-    if (!user) {
-      return res.json({ status: "error", error: "Invalid email or password" });
-    } else {
-      const token = jwt.sign(
-        {
-          name: user.name,
-          email: user.email,
-        },
-        "sada9429ada9d2r9qafda"
-      );
-      res.json({ status: "ok", user: token });
-    }
-  } catch (err) {
-    console.log(err);
-    res.json({ status: "error", error: "Server error" });
-  }
-  console.log(req.body);
-});
-
-app.get("/api/home", (req, res) => {
-  const token = req.headers["x-access-token"];
-  console.log(token);
-  if (token === "null") {
-    return res.status(401).json({ message: "Invalid" });
-  }
-
-  res.json({ message: "valid" });
-});
-
-app.get("/", (req, res) => res.send("Hello World!"));
-
-app.get("/api/anime_data", async (req, res) => {
-  const result = await AnimeData.find();
-  res.send({
-    result,
-  });
-});
-
+// Start the server and listen on the specified port
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

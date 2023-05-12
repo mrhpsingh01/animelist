@@ -6,7 +6,7 @@ function TableData(props) {
     <div style={{ marginRight: "180px" }}>
       <h3 style={{ paddingTop: "10px" }}>Table</h3>
       <hr />
-      <Table>
+      <Table size="sm">
         <thead>
           <tr>
             <th>ID</th>

@@ -21,7 +21,8 @@ ChartJS.register(
 );
 
 function Chart(props) {
-  const data = getBarData(props.currentItems);
+  const numofColors = 3;
+  const data = getBarData(props.currentItems, numofColors);
 
   return (
     <div style={({ padding: "20px" }, { width: "70%" })}>

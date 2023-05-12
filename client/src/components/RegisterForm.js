@@ -32,24 +32,21 @@ function RegisterForm() {
   async function registerUser(event) {
     event.preventDefault();
     console.log(name, email, password, gender, age, phone, country);
-    const response = await fetch(
-      "https://anime-list-7xnx.onrender.com/api/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          gender,
-          age,
-          phone,
-          country,
-          password,
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:1337/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        gender,
+        age,
+        phone,
+        country,
+        password,
+      }),
+    });
 
     const data = await response.json();
 
@@ -91,7 +88,7 @@ function RegisterForm() {
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
-      <div key={"inline-radio"} className="mb-3">
+      <Form.Group key={"inline-radio"} className="mb-3">
         <Form.Check
           inline
           label="male"
@@ -100,6 +97,7 @@ function RegisterForm() {
           value="male"
           onChange={(e) => setGender(e.target.value)}
           id={"inline-radio-1"}
+          required
         />
         <Form.Check
           inline
@@ -109,6 +107,7 @@ function RegisterForm() {
           value="female"
           onChange={(e) => setGender(e.target.value)}
           id={"inline-radio-2"}
+          required
         />
         <Form.Check
           inline
@@ -118,8 +117,9 @@ function RegisterForm() {
           value="others"
           onChange={(e) => setGender(e.target.value)}
           id={"inline-radio-3"}
+          required
         />
-      </div>
+      </Form.Group>
       <Form.Group>
         Age
         <Form.Range
@@ -146,6 +146,10 @@ function RegisterForm() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <Form.Text className="text-muted">
+          A Valid Password must contain one lowercase, one uppercase, one digit
+          & Minimum length of 8 characters.
+        </Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit

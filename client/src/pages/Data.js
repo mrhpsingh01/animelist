@@ -5,6 +5,7 @@ import viewArray from "../utilities/ViewsArray";
 import Nav from "../components/Nav";
 import { useNavigate } from "react-router-dom";
 import ViewsButtons from "../utilities/ViewsButtons";
+import bgImage from "../assets/desktop-1920x1080.jpg";
 
 function Data() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Data() {
 
   useEffect(() => {
     axios
-      .get("https://anime-list-7xnx.onrender.com/api/anime_data")
+      .get("http://localhost:1337/api/anime_data")
       .then((response) => {
         setAnimeList(response.data.result);
       })
@@ -40,8 +41,24 @@ function Data() {
   };
 
   return (
-    <div>
-      <Nav authorized={true} logOut={logOut} email={localStorage.email} />
+    <div
+      style={{
+        height: "100vh",
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundPositionX: "left",
+        backgroundPositionY: "bottom",
+        backgroundColor: "yellow",
+      }}
+    >
+      <Nav
+        navColor="dark"
+        authorized={true}
+        logOut={logOut}
+        email={localStorage.email}
+      />
       <div style={{ marginLeft: "220px" }}>
         <div>
           {CurrentViewComponent && (

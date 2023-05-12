@@ -21,7 +21,8 @@ ChartJS.register(
 );
 
 function Chart(props) {
-  const data = getBarData(props.currentItems);
+  const numofColors = 3;
+  const data = getBarData(props.currentItems, numofColors);
   return (
     <div style={{ width: "100%" }}>
       <h3 style={{ paddingTop: "10px" }}>Radar Chart</h3>
